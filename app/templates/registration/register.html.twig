@@ -1,0 +1,36 @@
+{% extends 'base_login_register.html.twig' %}
+
+{% block body %}
+    <div class="relative text-4xl mb-10">
+        <i class="fa-solid fa-dragon fa-2xl text-green-500"></i>
+    </div>
+    <div class="relative mb-10">
+        <span class="text-xl font-semibold">Register</span>
+    </div>
+    <div class="grid grid-rows-5 relative w-3/5 h-52 mb-10">
+    {{ form_start(registrationForm) }}
+        <div class="row-span-1 h-10 mb-4">
+            {{ form_widget(registrationForm.email, {'attr':{'class':'w-full h-full p-2 rounded-lg shadow-xl', 'placeholder':'Email'}}) }}
+            {{ form_errors(registrationForm.email) }}
+        </div>
+        <div class="row-span-1 h-10 mb-4">
+            {{ form_widget(registrationForm.plainPassword.first, {'attr':{'class':'w-full h-full p-2 rounded-lg shadow-xl','placeholder':'Password'}}) }}
+            {{ form_errors(registrationForm.plainPassword.first)}}       
+        </div>
+        <div class="row-span-1 h-10 mb-4">
+            {{ form_widget(registrationForm.plainPassword.second, {'attr':{'class':'w-full h-full p-2 rounded-lg shadow-xl', 'placeholder':'Repeat password'}})}}
+            {{ form_errors(registrationForm.plainPassword.second)}}
+        </div>
+        <div class="row-span-1">
+            {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'h-4 w-4 rounded border-gray border text-indigo-300 mr-2'}}) }}
+            {{ form_label(registrationForm.agreeTerms, 'Agree to terms', {'label_attr': {'class':'text-sm text-gray-700 font-medium'} })}}
+        </div>
+        <div class="row-span-1 h-10 mb-4">
+            <button type="submit" class="bg-green-500 w-full rounded-full h-full shadow-xl text-white">Register</button>
+        </div>
+    {{ form_end(registrationForm) }}
+    </div>
+    <div class="relative ">
+        <span> You have an account?<a href="{{ path('app_login') }}" class="text-green-500"> Click here!</a></span>
+    </div>
+{% endblock %}

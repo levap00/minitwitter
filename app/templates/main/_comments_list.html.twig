@@ -1,0 +1,7 @@
+<div>
+    {% if comments|length>0 %}
+        {% for comment in comments %}
+            {{ include("main/_post.html.twig", {miniTwit:comment}) }}
+        {% endfor %}
+    {% endif %}
+</div>

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="hidden md:block">
+        {{ include('main/_form.html.twig',{form:form}) }}
+    </div>
+    {{ include('main/_post_list.html.twig', {miniTwits:miniTwits}) }}
+{% endblock %}
+
+{% block modal %}
+    {% if app.user %}
+        <div class="block">
+            {{ include('main/_form.html.twig', {form:form1}) }}
+        </div>
+    {% endif %}
+{% endblock %}

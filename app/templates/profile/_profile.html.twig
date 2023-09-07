@@ -1,0 +1,67 @@
+<div>
+    <div class="flex flex-col w-full">
+        <div class="flex flex-col">
+            <div class="basis-5/6 w-full z-0">
+                {{ include('shared/_background.html.twig', {userProfile:user.userProfile}) }}
+            </div>
+            <div class="basis-1/6 flex justify-end z-0">
+                <button>
+                
+                </button>
+                {% if app.user and app.user.id == user.id %}
+                    <a href="{{ path('app_mini_twits_profile_edit') }}" class="mr-4 mt-3 mb-3 p-2 pl-5 pr-5 rounded-full border font-semibold text-gray-600">Edit Profile</a>
+                {% else %}
+                    {{ include('shared/_follow_button.html.twig', {user:user}) }}
+                {% endif %}
+            </div>
+            <div class="absolute z-10 ml-3 mt-16">
+                <div class="bg-white w-40 h-40 rounded-full flex justify-center items-center">
+                    {{ include('shared/_avatar.html.twig', {'sizeW':'w-5/6', 'sizeH':'h-5/6',userProfile:user.userProfile}) }}
+                </div>
+            </div>
+        </div>
+        <div class="ml-3 mr-3">
+            <div>
+                <div class="grid grid-rows-2 mt-5">
+                    <div class="row-span-1 text-xl">
+                        {% if user.userProfile.name != null %}
+                            <span>{{ user.userProfile.name }}</span>
+                        {% else %}
+                            <span>{{ user.email }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="row-span-1">
+                        <span>{{ user.email }}</span>
+                    </div>
+                </div>
+                {% if user.userProfile.bio %}
+                    <div class="mt-4 break-normal">
+                        <span>{{user.userProfile.bio}}</span>
+                    </div>
+                {% endif %}
+                <div class="mt-4 w-full">
+                    {% if 0 != 0 %}
+                        <span><i class="fa-solid fa-briefcase"></i> Financial Services &nbsp&nbsp&nbsp</span>
+                    {% endif %}
+                    {% if user.userProfile.location %}
+                        <span><i class="fa-solid fa-location-dot"></i> {{user.userProfile.location}} &nbsp&nbsp&nbsp</span>
+                    {% endif %}
+                    {% if user.userProfile.website %}
+                        <span><i class="fa-solid fa-paperclip"></i> {{user.userProfile.website}} &nbsp&nbsp&nbsp</span>
+                    {% endif %}
+                    {% if user.userProfile.created %}
+                        <span><i class="fa-solid fa-calendar"></i> Joined {{user.userProfile.created|date("F Y")}} &nbsp&nbsp&nbsp</span>
+                    {% endif %}
+                </div>
+                <div class="flex text-sm mt-4">
+                    <div class="basis-1/5">
+                        <a href="{{ path('app_mini_twits_other_profile_following', {id:user.id}) }}" class="hover:underline"><span class="font-bold">{{ user.follows.count }}</span> Following</a>
+                    </div>
+                    <div class="basis-1/5">
+                        <a href="{{ path('app_mini_twits_other_profile_followers', {id:user.id}) }}" class="hover:underline"><span class="font-bold">{{ user.followed.count }}</span> Followers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

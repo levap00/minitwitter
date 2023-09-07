@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if miniTwit.miniTwit %}
+        {% set iterableTwit = miniTwit %}
+        {% for i in 0..30 %}
+            {% if iterableTwit.miniTwit %}
+                {% set iterableTwit =  iterableTwit.miniTwit %}
+                <div>
+                    {{ include('main/_post.html.twig',{miniTwit:iterableTwit, classes:'border-white', line:'line'}) }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <div class="{{miniTwit.miniTwit ? 'mt-2'}}">
+        <div class="ml-4 mr-4 flex flex-col">
+            <div class="basis-6/12 flex flex-col">
+                <div class="flex">
+                    <div class="basis-1/12">
+                        {{ include('shared/_avatar.html.twig', {'sizeW':'w-16', 'sizeH':'h-16',userProfile:miniTwit.author.userProfile}) }}
+                    </div>
+                    <div class="basis-10/12 flex flex-col ml-2 justify-center">
+                        <div class="">
+                            <span class="truncate"><a href="{{ path('app_mini_twits_other_profile', {id:miniTwit.author.id}) }}" class="hover:underline"><span class="font-bold truncate">{{ miniTwit.author.userProfile.name ? miniTwit.author.userProfile.name : miniTwit.author.email }}</span></a></span>
+                        </div>
+                        <div class="">
+                            <span>@{{ miniTwit.author.email }}</span>
+                        </div>
+                    </div>
+                    <div class="basis-1/12 flex items-center justify-end">
+                        <button class="p-2 hover:bg-gray-200 rounded-full"><i class="fa-solid fa-ellipsis"></i></button>
+                    </div>
+                </div>
+                <div class="text-2xl mt-4">
+                    {{ miniTwit.description }}
+                </div>
+                <div class="mt-4 mb-4">
+                    <span>{{ miniTwit.created|date("h:i A") }} · {{ miniTwit.created|date("M j, Y") }}</span>
+                </div>
+            </div>
+            <div class="basis-6/12 flex flex-col h-96">
+                <div class="basis-1/4 border-t pb-2 pt-2">
+                    <span class="ml-2"><span class="font-semibold">{{miniTwit.likedBy.count}} </span>Likes</span>
+                </div>
+                <div class="basis-1/4 border-t pb-1 pt-2 flex justify-center">
+                    <div class="basis-1/4 flex justify-center">
+                        <a href="#" class="hover:text-blue-300"><i class="fa-regular fa-comment rounded-full p-2 hover:bg-gray-200"></i></a>
+                    </div>
+                    <div class="basis-1/4 flex justify-center">
+                        <a href="#" class="hover:text-green-300"><i class="fa-solid fa-retweet rounded-full p-2 hover:bg-gray-200"></i></a>
+                    </div>
+                    <div class="basis-1/4 flex justify-center">
+                        <a href="#" class="hover:text-red-300"><i class="fa-regular fa-heart rounded-full p-2 hover:bg-gray-200"></i></a>
+                    </div>
+                    <div class="basis-1/4 flex justify-center">
+                        <a href="#" class="hover:text-blue-300"><i class="fa-solid fa-arrow-up-from-bracket rounded-full p-2 hover:bg-gray-200"></i></a>
+                    </div>
+                </div>
+                {% if app.user %}
+                    <div class="basis-2/4 border-t">
+                        {{ form_start(form) }}
+                        <div class="flex">
+                            <div class="basis-1/12 mt-4">
+                                <div class="p-8 rounded-full bg-gray-500"></div>
+                            </div>
+                            <div class="basis-11/12 ml-2 mt-4">
+                                <div>
+                                    {{ form_widget(form.description, {'attr':{'class':'w-full p-2 text-2xl outline-none','placeholder':'MiniTwit your replay'}}) }}
+                                    {{ form_errors(form.description) }}
+                                    {{ form_widget(form.title, {'attr':{'class':'hidden'}}) }}
+                                    {{ form_widget(form.isPublic, {'attr':{'class':'hidden'}}) }}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="basis-5/6">
+
+                            </div>
+                            <div class="basis-1/6">
+                                <button type="submit" class="w-full rounded-full p-2 bg-green-500 text-white font-bold">Reply</button>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="mt-4 border-b">
+        </div>
+        {{ include('main/_comments_list.html.twig') }}
+    </div>
+{% endblock %}
+
+{% block modal %}
+    {% if app.user %}
+        <div class="block">
+            {{ include('main/_form.html.twig', {form:form1}) }}
+        </div>
+    {% endif %}
+{% endblock %}

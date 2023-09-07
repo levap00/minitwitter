@@ -1,0 +1,11 @@
+<div>
+    {% if follows|length>0 %}
+        {% for follow in follows%}
+            <div>
+            {{ include('followed/_follow.html.twig',{follow:follow}) }}
+            </div>
+        {% endfor %}
+    {% else %}
+        There's nothing here yet!
+    {% endif %}
+</div>

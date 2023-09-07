@@ -1,0 +1,26 @@
+
+<div class=" bg-white-50/90 h-12 sticky top-14 z-10 backdrop-blur-sm border-b">
+    <div class="fixed w-full">
+        <div class="">
+           <div class="grid grid-cols-2 justify-items-center mt-[3px]">
+                {% embed "shared/_tab.html.twig" with {route: 'app_mini_twits_other_profile_followers'} %}
+                    {% block path %}
+                        {{ path('app_mini_twits_other_profile_followers', {id:user.id}) }}
+                    {% endblock %}
+                    {% block content %}
+                        Followers
+                    {% endblock %}
+                {% endembed %}
+                {% embed "shared/_tab.html.twig" with {route: 'app_mini_twits_other_profile_following'} %}
+                    {% block path %}
+                        {{ path('app_mini_twits_other_profile_following', {id:user.id}) }}
+                    {% endblock %}
+                    {% block content %}
+                        Following
+                    {% endblock %}
+                {% endembed %}
+            </div>                         
+        </div>
+    </div>
+</div>   
+    

@@ -1,0 +1,5 @@
+<a href="{% block path %} {% endblock %}" class="w-full h-full pt-2 mb-3 hover:bg-gray-200 flex justify-center {% if app.request.get('_route')==route %} underline underline-offset-[10px] decoration-8 decoration-green-500 text-gray-800{% else %} text-gray-500 {% endif %}{% if classes is defined %} {{classes}} {% endif %}">
+    {% block content %}
+            
+    {% endblock %}
+</a>

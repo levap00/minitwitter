@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block fixed %}
+    {{ include('profile/_profile_follows_tabs.html.twig') }}
+{% endblock %}
+
+{% block body %}
+    {{ include('followed/_follows_list.html.twig', {follows:user.follows}) }}
+{% endblock %}
+
+{% block modal %}
+    {% if app.user %}
+        <div class="block">
+            {{ include('main/_form.html.twig', {form:form1}) }}
+        </div>
+    {% endif %}
+{% endblock %}

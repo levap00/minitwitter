@@ -1,0 +1,19 @@
+<div>
+    {% if miniTwits|length>0 %}
+        {% if app.request.attributes.get('_route') == 'app_mini_twits_top' %}
+            {% for miniTwit in miniTwits|sort((a,b) => b.likedBy.count <=> a.likedBy.count) %}
+                <div>
+                {{ include('main/_post.html.twig',{miniTwit:miniTwit}) }}
+                </div>
+            {% endfor %}
+        {% else %}
+            {% for miniTwit in miniTwits %}
+                <div>
+                {{ include('main/_post.html.twig',{miniTwit:miniTwit}) }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% else %}
+        There's nothing here yet!
+    {% endif %}
+</div>

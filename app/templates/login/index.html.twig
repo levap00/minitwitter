@@ -1,0 +1,30 @@
+{% extends "base_login_register.html.twig" %}
+
+{% block body %}
+    <div class="relative text-4xl mb-10">
+        <i class="fa-solid fa-dragon fa-2xl text-green-500"></i>
+    </div>
+    <div class="relative mb-10">
+        <span class="text-xl font-semibold">Welcome Back</span>
+    </div>
+    <div class="grid grid-rows-4 relative w-3/5 h-52 mb-10">
+        <form action="{{path('app_login')}}" method="POST">
+        <div class="row-span-1 h-10 mb-4">
+            <input name="_username" class="w-full h-full p-2 rounded-lg shadow-xl" placeholder="Email or username" type="text">
+        </div>
+        <div class="row-span-1 mb-4 h-10">
+            <input type="password" name="_password" class="w-full h-full p-2 rounded-lg shadow-xl" placeholder="Password">
+        </div>
+        <div class="row-span-1 mb-4 h-2 mb-4">
+            <a href="#" class="text-xs">Forgot password?</a>
+        </div>
+            <input type="hidden" name="_target_path" value="{{path('app_mini_twits')}}">
+        <div class="row-span-1 h-10">
+            <button type="submit" class="bg-green-500 w-full rounded-full h-full shadow-xl text-white">Log In</button>
+        </div>
+        </form>
+    </div>
+    <div class="relative ">
+        <span> Don't have an account yet?<a href="{{ path('app_register') }}" class="text-green-500"> Click here!</a></span>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {{ include('profile/_profile.html.twig') }}
+    {{ include('profile/_profile_tabs.html.twig') }}
+{% endblock %}
+
+{% block modal %}
+    {% if app.user %}
+        <div class="block">
+            {{ include('main/_form.html.twig', {form:form1}) }}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+    <div>
+        {{ form_errors(form) }}
+    </div>
+    <div class="grid grid-cols-6">
+        <div class="col-span-1 p-2">
+            <div class="rounded-full">
+                {{ include('shared/_avatar.html.twig', {'sizeW':'w-16 md:w-24', 'sizeH':'h-16 md:h-24',userProfile:app.user.userProfile}) }}
+            </div>
+        </div>
+        <div class="col-span-5 p-3">
+            <div>
+                <input type="text" name="{{ field_name(form.title) }}" class="w-full p-2 border rounded">
+                {{ form_errors(form.title) }}
+            </div>
+            <div>
+                <textarea name="{{ field_name(form.description) }}" class="w-full mt-2 p-2 rounded border border-solid"></textarea>
+                {{ form_errors(form.description) }}
+            </div>
+            <div>
+                <label for="{{ field_name(form.isPublic) }}" class="text-sm text-gray-700 dark:text-gray-300 font-medium">You want everyone to see it?</label>
+                <input type="checkbox" name="{{ field_name(form.isPublic) }}" class="h-4 w-4 rounded border-gray border text-indigo-300 mt-2 mr-2">
+            </div>
+        </div>
+        {{ form_rest(form) }}
+    </div>
+    <div class="flex border-b">
+        <button type="submit" class="basis-1/4 block w-full shadow-sm border-transparent bg-green-500 hover:bg-green-600 text-white rounded-full border p-2 mb-4">Add MiniTwit</button>
+    </div>
+{{ form_end(form) }}

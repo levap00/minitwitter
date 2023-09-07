@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if app.user %}
+        <div class="hidden md:block">
+            {{ include('main/_form.html.twig') }}
+        </div>
+    {% endif %}
+    {{ include('main/_post_list.html.twig') }}
+{% endblock %}
+
+{% block modal %}
+    {% if app.user %}
+        <div class="block">
+            {{ include('main/_form.html.twig', {form:form1}) }}
+        </div>
+    {% endif %}
+{% endblock %}

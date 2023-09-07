@@ -1,0 +1,7 @@
+{% if userProfile and userProfile.avatar %}
+    <div class="{{ sizeW }} {{ sizeH }} rounded-full">
+        <img class="w-full h-full rounded-full" src="{{avatars ~ userProfile.avatar}}" alt="">
+    </div>
+{% else %}
+    <div class="{{ sizeW }} {{ sizeH }} rounded-full bg-gray-500"></div>
+{% endif %}

@@ -1,0 +1,9 @@
+{% if user.followed.contains(app.user) %}
+    <a href="{{ path('app_mini_twits_unfollow',{id:user.id}) }}" class="mr-4 mt-3 mb-3 p-2 pl-5 pr-5 rounded-full bg-gray-800 font-semibold text-white">Unfollow</a>
+{% else %}
+    {% if app.user %}
+        <a href="{{ path('app_mini_twits_follow',{id:user.id}) }}" class="mr-4 mt-3 mb-3 p-2 pl-5 pr-5 rounded-full bg-gray-800 font-semibold text-white">Follow</a>
+    {% else %}
+        <a href="{{ path('app_login') }}" class="mr-4 mt-3 mb-3 p-2 pl-5 pr-5 rounded-full bg-gray-800 font-semibold text-white">Follow</a>
+    {% endif %}
+{% endif %}

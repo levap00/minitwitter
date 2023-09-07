@@ -1,0 +1,5 @@
+{% if userProfile and userProfile.backgroundImage %}
+    <img class="h-36 w-full" src="{{background ~ userProfile.backgroundImage}}" alt="">
+{% else %}
+    <div class="h-36 w-full bg-gray-500"></div>
+{% endif %}
